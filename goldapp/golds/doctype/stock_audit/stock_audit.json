@@ -1,0 +1,99 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:SA-{audit_date}",
+ "creation": "2024-02-28 10:03:15.530172",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "audit_date",
+  "total_items_in_stock",
+  "column_break_mljhy",
+  "total_not_found_items",
+  "total_not_in_stock_items",
+  "section_break_rhra4",
+  "scan_barcode",
+  "stock_items",
+  "section_break_znlnx",
+  "not_in_stock"
+ ],
+ "fields": [
+  {
+   "default": "Today",
+   "fieldname": "audit_date",
+   "fieldtype": "Date",
+   "label": "Audit Date"
+  },
+  {
+   "fieldname": "total_items_in_stock",
+   "fieldtype": "Int",
+   "label": "Total Items in Stock"
+  },
+  {
+   "fieldname": "total_not_found_items",
+   "fieldtype": "Int",
+   "label": "Total Not Found Items"
+  },
+  {
+   "fieldname": "total_not_in_stock_items",
+   "fieldtype": "Int",
+   "label": "Total Not In Stock Items"
+  },
+  {
+   "fieldname": "stock_items",
+   "fieldtype": "Table",
+   "label": "Stock Items",
+   "options": "Stock Item"
+  },
+  {
+   "fieldname": "not_in_stock",
+   "fieldtype": "Data",
+   "label": "Not in Stock"
+  },
+  {
+   "fieldname": "scan_barcode",
+   "fieldtype": "Data",
+   "label": "Scan Barcode",
+   "options": "Barcode"
+  },
+  {
+   "fieldname": "column_break_mljhy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_rhra4",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_break_znlnx",
+   "fieldtype": "Section Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-03-21 10:26:17.879021",
+ "modified_by": "Administrator",
+ "module": "golds",
+ "name": "Stock Audit",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -5,6 +5,50 @@ app_description = "gold in erpnext"
 app_email = "hevin@x.com"
 app_license = "MIT"
 
+
+
+app_include_js = "/assets/goldapp/js/custom_barcode_scanner.js"
+
+
+doc_events = {
+    "Stock Entry": {
+        "on_submit": "goldapp.golds.override.custom_serial_no.custom_update_serial_nos_after_submit"
+    },
+	"Purchase Receipt": {
+        "on_submit": "goldapp.golds.override.custom_serial_no.custom_update_serial_nos_after_submit"
+    },
+	"purchase Invoice":{
+		"on_submit": "goldapp.golds.override.custom_serial_no.custom_update_serial_nos_after_submit"
+	}
+}
+
+
+
+override_whitelisted_methods = {
+	# "frappe.desk.doctype.event.event.get_events": "goldapp.event.get_events"
+	"erpnext.stock.utils.scan_barcode": "goldapp.golds.override.custom_serial_no.custom_scan_barcode"
+}
+
+
+
+doctype_js = {"Purchase Order" : "public/js/purchase_order_item.js",
+			  "Sales Order" : "public/js/sales_order_item.js",
+			  "Stock Entry" : "public/js/stock_entry_details.js",
+			  "Sales Invoice" : "public/js/sales_invoice_item.js",
+			  "Purchase Invoice" : "public/js/purchase_invoice_item.js",
+			  "Purchase Receipt": "public/js/purchase_receipt_item.js",
+			  "Delivery Note": "public/js/delivery_note_item.js",
+			#   "Serial No": "public/js/serial_no.js",
+			#   "Barcode Scanner":"public/js/custom_barcode_scanner.js",	
+			  }
+
+
+fixtures =[    
+	{"dt":"Custom Field", "filters": [["dt", "in", ("Item","Sales Invoice","Sales Invoice Item","Stock Entry","Stock Entry Details","Purchase Invice","Purchase Invoice Item")]]}
+]
+
+
+
 # Includes in <head>
 # ------------------
 
@@ -110,6 +154,11 @@ app_license = "MIT"
 
 # override_doctype_class = {
 # 	"ToDo": "custom_app.overrides.CustomToDo"
+# }
+
+# override_doctype_class = {
+# 	# "Serial No": "goldapp.serial_no.Custom_Serial_No",
+# 	# "Stock Entry":"goldapp.Custom_Stock_Entery.Custom_Stock_Entery"
 # }
 
 # Document Events

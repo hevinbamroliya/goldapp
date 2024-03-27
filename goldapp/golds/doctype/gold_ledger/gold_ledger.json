@@ -1,0 +1,167 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-02-28 10:19:35.338721",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "posting_date",
+  "item_code",
+  "stock_uom",
+  "purity",
+  "purity_percentage",
+  "serial_no",
+  "warehouse",
+  "party_type",
+  "party",
+  "debit",
+  "section_break_gmxon",
+  "debit_gold",
+  "credit",
+  "credit_gold",
+  "account_currency",
+  "debit_amount_in_account_currency",
+  "credit_amount_in_account_currency",
+  "voucher_type",
+  "voucher_no",
+  "fiscal_year",
+  "is_cancelled"
+ ],
+ "fields": [
+  {
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Posting Date"
+  },
+  {
+   "fieldname": "item_code",
+   "fieldtype": "Link",
+   "label": "Item Code",
+   "options": "Item"
+  },
+  {
+   "fieldname": "stock_uom",
+   "fieldtype": "Data",
+   "label": "UOM"
+  },
+  {
+   "fieldname": "purity",
+   "fieldtype": "Text",
+   "label": "Purity",
+   "options": "Purity"
+  },
+  {
+   "fieldname": "purity_percentage",
+   "fieldtype": "Data",
+   "label": "Purity Percentage"
+  },
+  {
+   "fieldname": "serial_no",
+   "fieldtype": "Text",
+   "label": "Serial No"
+  },
+  {
+   "fieldname": "warehouse",
+   "fieldtype": "Link",
+   "label": "Warehouse",
+   "options": "Warehouse"
+  },
+  {
+   "fieldname": "party_type",
+   "fieldtype": "Select",
+   "label": "Party Type",
+   "options": "Customer\nSupplier\nEmployee\nShareholder"
+  },
+  {
+   "fieldname": "party",
+   "fieldtype": "Link",
+   "label": "Party",
+   "options": "Party Type"
+  },
+  {
+   "fieldname": "debit",
+   "fieldtype": "Data",
+   "label": "Debit Amount"
+  },
+  {
+   "fieldname": "debit_gold",
+   "fieldtype": "Data",
+   "label": "Debit Gold"
+  },
+  {
+   "fieldname": "credit",
+   "fieldtype": "Data",
+   "label": "Credit Amount"
+  },
+  {
+   "fieldname": "credit_gold",
+   "fieldtype": "Data",
+   "label": "Credit Gold"
+  },
+  {
+   "fieldname": "account_currency",
+   "fieldtype": "Data",
+   "label": "Account Currency"
+  },
+  {
+   "fieldname": "debit_amount_in_account_currency",
+   "fieldtype": "Data",
+   "label": "Debit Amount in Account Currency"
+  },
+  {
+   "fieldname": "credit_amount_in_account_currency",
+   "fieldtype": "Data",
+   "label": "Credit Amount in Account Currency"
+  },
+  {
+   "fieldname": "voucher_type",
+   "fieldtype": "Data",
+   "label": "Voucher Type"
+  },
+  {
+   "fieldname": "voucher_no",
+   "fieldtype": "Data",
+   "label": "Voucher No"
+  },
+  {
+   "fieldname": "fiscal_year",
+   "fieldtype": "Data",
+   "label": "Fiscal Year"
+  },
+  {
+   "fieldname": "is_cancelled",
+   "fieldtype": "Data",
+   "label": "Is Cancelled"
+  },
+  {
+   "fieldname": "section_break_gmxon",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-03-04 10:49:52.173734",
+ "modified_by": "Administrator",
+ "module": "golds",
+ "name": "Gold Ledger",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
