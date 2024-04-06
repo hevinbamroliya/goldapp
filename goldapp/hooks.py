@@ -7,16 +7,23 @@ app_license = "MIT"
 
 
 
-app_include_js = "/assets/goldapp/js/custom_barcode_scanner.js"
+app_include_js = ["/assets/goldapp/js/barcode_scanning.js"]
+# app_include_js = ["/assets/goldapp/js/serial_no.js",]
+
+	 
 
 
 doc_events = {
     "Stock Entry": {
-        "on_submit": "goldapp.golds.override.custom_serial_no.custom_update_serial_nos_after_submit"
+        "on_submit": "goldapp.golds.override.custom_serial_no.custom_update_serial_nos_after_submit",
+		# "on_submit": "goldapp.golds.doctype.gold_ledger_entry.gold_ledger_entry.goldstock"
+
     },
+
 	"Purchase Receipt": {
         "on_submit": "goldapp.golds.override.custom_serial_no.custom_update_serial_nos_after_submit"
     },
+
 	"purchase Invoice":{
 		"on_submit": "goldapp.golds.override.custom_serial_no.custom_update_serial_nos_after_submit"
 	}
@@ -25,8 +32,10 @@ doc_events = {
 
 
 override_whitelisted_methods = {
-	# "frappe.desk.doctype.event.event.get_events": "goldapp.event.get_events"
-	"erpnext.stock.utils.scan_barcode": "goldapp.golds.override.custom_serial_no.custom_scan_barcode"
+	
+	"erpnext.stock.utils.scan_barcode": "goldapp.golds.override.custom_serial_no.custom_scan_barcode",
+	
+	# "erpnext.stock.doctype.serial_no.serial_no.update_serial_nos_after_submit":"goldapp.golds.override.custom_serial_no.custom_update_serial_nos_after_submit"
 }
 
 
@@ -38,13 +47,15 @@ doctype_js = {"Purchase Order" : "public/js/purchase_order_item.js",
 			  "Purchase Invoice" : "public/js/purchase_invoice_item.js",
 			  "Purchase Receipt": "public/js/purchase_receipt_item.js",
 			  "Delivery Note": "public/js/delivery_note_item.js",
-			#   "Serial No": "public/js/serial_no.js",
+			  "Serial No": "public/js/serial_no.js",
 			#   "Barcode Scanner":"public/js/custom_barcode_scanner.js",	
 			  }
 
 
 fixtures =[    
-	{"dt":"Custom Field", "filters": [["dt", "in", ("Item","Sales Invoice","Sales Invoice Item","Stock Entry","Stock Entry Details","Purchase Invice","Purchase Invoice Item")]]}
+	{"dt":"Custom Field", "filters": [["dt", "in", ("Item","Sales Invoice","Sales Invoice Item","Sales Order","Sales Order Item","Stock Entry","Stock Entry Details","Purchase Invice","Purchase Invoice Item","Purchase Order","Purchase Order Item","Purchase Receipt","Purchase Receipt Item","Delivery Note","Delivery Note Item","Serial No")]]},
+	'Property Setter',
+	
 ]
 
 

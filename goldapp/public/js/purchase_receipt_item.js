@@ -1,22 +1,73 @@
+frappe.ui.form.on('Purchase Receipt', {
+    custom_booking_rate: function(frm) {        
+        var custom_booking_rate = frm.doc.custom_booking_rate;     
+        frm.doc.items.forEach(function(row) {
+            var custom_fine_weight = row.custom_fine_weight;                      
+            if (custom_fine_weight && custom_booking_rate) {
+                var fine_value = custom_fine_weight * custom_booking_rate;               
+                frappe.model.set_value(row.doctype, row.name, 'custom_fine_value', fine_value); 
+                               
+            }            
+       });
+    }, 
+    
+    
+    scan_barcode : function(frm){
+        result(frm)
+    }
+   
+})
+
+
+
 frappe.ui.form.on('Purchase Receipt Item', {
-    item_code: fetchGoldRate,
-    custom_gold_type: fetchGoldRate,
-    custom_purity: fetchGoldRate, 
-    custom_gross_weight: updateItem,
-    custom_less_weight: updateItem,
-    custom_purity_percentage: updateItem,
-    qty:saleslabouramount,labouramount,    
-    custom_labour_amount: tatoalamount,
-    custom_fine_weight: finevalue,
-    custom_sales_labour_type: saleslabouramount,
-    custom_labour_type: labouramount,
-    custom_total_amount: calculateTotal,
       
+    // item_code: function(frm, cdt, cdn){
+    //     fetchGoldRate(frm, cdt, cdn);
+    // },
+
+    custom_gross_weight: function(frm, cdt, cdn) {
+        updateItem(frm, cdt, cdn);
+        calculateTotal(frm);
+    },
+    custom_less_weight: function(frm, cdt, cdn) {
+        updateItem(frm, cdt, cdn);
+        calculateTotal(frm);
+    }, 
+    custom_purity_percentage: function(frm, cdt, cdn) {
+        updateItem(frm, cdt, cdn);
+    }, 
+    qty: function(frm, cdt, cdn) {
+        saleslabouramount(frm, cdt, cdn);
+        labouramount(frm, cdt, cdn);
+    },  
+    custom_labour_amount: function(frm, cdt, cdn){
+        tatoalamount(frm, cdt, cdn);
+    },
+    custom_gold_value: function(frm, cdt, cdn){
+        tatoalamount(frm, cdt, cdn);
+    },
+    custom_other_amount: function(frm, cdt, cdn){
+        tatoalamount(frm, cdt, cdn);
+    },    
+    custom_fine_weight: function(frm, cdt, cdn){
+        finevalue(frm, cdt, cdn);
+    },   
+    custom_sales_labour_type: function(frm, cdt, cdn){
+        saleslabouramount(frm, cdt, cdn);
+    },
+    custom_labour_type: function(frm, cdt, cdn){
+        labouramount(frm, cdt, cdn);
+    },
+    custom_total_amount: function(frm, cdt, cdn){
+        calculateTotal(frm, cdt, cdn);
+    },
     
 
    
 
 });
+
 //-----calculate custom net weight , custom fine weight , custom gold value -------//
 function updateItem(frm, cdt, cdn) {
     var child_doc = locals[cdt][cdn];
@@ -49,16 +100,20 @@ function updateItem(frm, cdt, cdn) {
 function finevalue(frm,cdt,cdn){
     var child_doc = locals[cdt][cdn];
 
-    var custom_gold_rate = child_doc.custom_gold_rate;
+    var custom_booking_rate = frm.doc.custom_booking_rate;
     var custom_fine_weight = child_doc.custom_fine_weight;
+    var custom_gold_rate = child_doc.custom_gold_rate;   
 
-    var fine_value = custom_fine_weight * custom_gold_rate;  
-
-    if(custom_fine_weight !== undefined && custom_gold_rate !== undefined){
-              
-        frappe.model.set_value(cdt, cdn, 'custom_fine_value', fine_value);
-        
+    var fine_value = 0
+    
+    if(custom_fine_weight && custom_booking_rate){              
+        fine_value = custom_fine_weight * custom_booking_rate;               
     }
+    else{
+        fine_value = custom_fine_weight * custom_gold_rate;
+    }
+    
+    frappe.model.set_value(cdt, cdn, 'custom_fine_value', fine_value); 
 }
 
 
@@ -71,11 +126,8 @@ function tatoalamount(frm, cdt, cdn){
     var custom_labour_amount = child_doc.custom_labour_amount;
 
     var total_amount = custom_gold_value + custom_other_amount + custom_labour_amount;
-    if(custom_gold_value && custom_other_amount && custom_labour_amount){
-        frappe.model.set_value(cdt, cdn, 'custom_total_amount', total_amount);
+    frappe.model.set_value(cdt, cdn, 'custom_total_amount', total_amount);
         
-    }
-
 }
 
 //-----calculate custom sales labour amountt------//
@@ -148,27 +200,44 @@ function labouramount(frm, cdt, cdn){
 
 
 //-----fetch Gold Rate------//
-function fetchGoldRate(frm, cdt, cdn) {
-    var child_doc = locals[cdt][cdn];
-    var custom_purity = child_doc.custom_purity;
-    var custom_metal = child_doc.custom_metal_type
-    var date = frm.doc.posting_date;
-   
-    frm.call({        
-        method: 'goldapp.golds.doctype.metal_rate.metal_rate.query',
-        args: {           
-           
-            purity:custom_purity,
-            metal_type:custom_metal,
-            date:date,       
-            
-        },
-        callback: function(r) {
-            var rate = r.message[0];
-            frappe.model.set_value(cdt, cdn, 'custom_gold_rate', rate);
+let isresult = false;
+function result(frm){
+    
+    isresult = true;
+    setTimeout(function() {
+        isresult = false;
+        
+    }, 3000);
 
-        }
-    });
+}
+
+
+function fetchGoldRate(frm, cdt, cdn) {
+
+    if(!isresult){
+        var child_doc = locals[cdt][cdn];
+        var custom_purity = child_doc.custom_purity;
+        var custom_metal = child_doc.custom_metal_type;
+        var date = frm.doc.transaction_date;
+        
+        console.log(data);
+    
+        frm.call({        
+            method: 'goldapp.golds.doctype.metal_rate.metal_rate.query',
+            args: {           
+            
+                purity:custom_purity,
+                metal_type:custom_metal,
+                date:date,       
+                
+            },
+            callback: function(r) {
+                var rate = r.message[0];
+                frappe.model.set_value(cdt, cdn, 'custom_gold_rate', rate);
+
+            }
+        });
+    }
 }
 //-----set all Total in purchase order------//
 function  calculateTotal(frm){

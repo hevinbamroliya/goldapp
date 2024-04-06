@@ -224,7 +224,7 @@ function fetchGoldRate(frm, cdt, cdn) {
             
         },
         callback: function(r) {
-            var rate = r.message[0];
+            var rate = parseInt(r.message);
             frappe.model.set_value(cdt, cdn, 'custom_gold_rate', rate);
 
         }

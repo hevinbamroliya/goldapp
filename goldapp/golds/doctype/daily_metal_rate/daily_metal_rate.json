@@ -15,7 +15,8 @@
    "fieldname": "rate",
    "fieldtype": "Currency",
    "in_list_view": 1,
-   "label": "Rate"
+   "label": "Rate",
+   "reqd": 1
   },
   {
    "fieldname": "purity",
@@ -33,7 +34,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-02-29 10:31:19.977213",
+ "modified": "2024-04-03 11:36:29.736111",
  "modified_by": "Administrator",
  "module": "golds",
  "name": "Daily Metal Rate",

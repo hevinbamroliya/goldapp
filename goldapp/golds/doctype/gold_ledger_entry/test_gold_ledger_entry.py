@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class TestGoldLedger(FrappeTestCase):
+class TestGoldLedgerEntry(FrappeTestCase):
 	pass
