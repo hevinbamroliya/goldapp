@@ -10,22 +10,43 @@ app_license = "MIT"
 app_include_js = ["/assets/goldapp/js/barcode_scanning.js"]
 # app_include_js = ["/assets/goldapp/js/serial_no.js",]
 
+
+scheduler_events = {
+	"cron": {
+	    "* * * * *": [
+	        "goldapp.golds.doctype.stock_audit.stock_audit.cron"
+	        ]
+	},
+}
 	 
 
 
 doc_events = {
     "Stock Entry": {
-        "on_submit": "goldapp.golds.override.custom_serial_no.custom_update_serial_nos_after_submit",
-		# "on_submit": "goldapp.golds.doctype.gold_ledger_entry.gold_ledger_entry.goldstock"
-
+        "on_submit":[ 
+			"goldapp.golds.override.custom_serial_no.custom_update_serial_nos_after_submit",
+			"goldapp.golds.doctype.gold_ledger.gold_ledger.create_gold_ledger",
+		],
+		"on_cancel":(
+			"goldapp.golds.doctype.gold_ledger.gold_ledger.remove_gold_ledger"
+		)	
     },
-
+	
 	"Purchase Receipt": {
-        "on_submit": "goldapp.golds.override.custom_serial_no.custom_update_serial_nos_after_submit"
+        "on_submit": [ 
+			"goldapp.golds.override.custom_serial_no.custom_update_serial_nos_after_submit",
+			"goldapp.golds.doctype.gold_ledger.gold_ledger.create_gold_ledger",
+		],
+		"on_cancel":(
+			"goldapp.golds.doctype.gold_ledger.gold_ledger.remove_gold_ledger"
+		)	
     },
 
 	"purchase Invoice":{
 		"on_submit": "goldapp.golds.override.custom_serial_no.custom_update_serial_nos_after_submit"
+	},
+	"Delivery Note":{
+		"on_submit":"goldapp.golds.doctype.gold_ledger.gold_ledger.create_gold_ledger"
 	}
 }
 
@@ -50,7 +71,6 @@ doctype_js = {"Purchase Order" : "public/js/purchase_order_item.js",
 			  "Serial No": "public/js/serial_no.js",
 			#   "Barcode Scanner":"public/js/custom_barcode_scanner.js",	
 			  }
-
 
 fixtures =[    
 	{"dt":"Custom Field", "filters": [["dt", "in", ("Item","Sales Invoice","Sales Invoice Item","Sales Order","Sales Order Item","Stock Entry","Stock Entry Details","Purchase Invice","Purchase Invoice Item","Purchase Order","Purchase Order Item","Purchase Receipt","Purchase Receipt Item","Delivery Note","Delivery Note Item","Serial No")]]},

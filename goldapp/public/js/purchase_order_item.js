@@ -9,20 +9,12 @@ frappe.ui.form.on('Purchase Order', {
             }            
        });
     }, 
-    
-    
-    scan_barcode : function(frm){
-        result(frm)
-    }
-   
+      
 })
 
 
-frappe.ui.form.on('Purchase Order Item', {
+frappe.ui.form.on('Purchase Order Item',{     
     
-    // item_code: function(frm, cdt, cdn){
-    //     fetchGoldRate(frm, cdt, cdn);
-    // },
     custom_gross_weight: function(frm, cdt, cdn) {
         updateItem(frm, cdt, cdn);
         calculateTotal(frm, cdt, cdn);
@@ -59,13 +51,7 @@ frappe.ui.form.on('Purchase Order Item', {
     },
     custom_total_amount: function(frm, cdt, cdn){
         calculateTotal(frm, cdt, cdn);
-    },
-   
-    
-   
-    
-
-   
+    },   
 
 });
 //-----calculate custom net weight , custom fine weight , custom gold value -------//
@@ -201,45 +187,8 @@ function labouramount(frm, cdt, cdn){
 }
 
 
-//-----fetch Gold Rate------//
-let isresult = false;
-function result(frm){
-    
-    isresult = true;
-    setTimeout(function() {
-        isresult = false;
-        
-    }, 3000);
-
-}
 
 
-function fetchGoldRate(frm, cdt, cdn) {
-
-    if(!isresult){
-        var child_doc = locals[cdt][cdn];
-        var custom_purity = child_doc.custom_purity;
-        var custom_metal = child_doc.custom_metal_type;
-        var date = frm.doc.transaction_date;
-        
-    
-        frm.call({        
-            method: 'goldapp.golds.doctype.metal_rate.metal_rate.query',
-            args: {           
-            
-                purity:custom_purity,
-                metal_type:custom_metal,
-                date:date,       
-                
-            },
-            callback: function(r) {
-                var rate = r.message[0];
-                frappe.model.set_value(cdt, cdn, 'custom_gold_rate', rate);
-
-            }
-        });
-    }    
-}
 
 //-----set all Total in purchase order------//
 function  calculateTotal(frm, cdt, cdn){
@@ -256,25 +205,5 @@ function  calculateTotal(frm, cdt, cdn){
     frm.set_value('custom_total_fine_weight', fine_weight);
     frm.set_value('custom_total_gross_weight', gross_weight);
     frm.set_value('custom_total_less_weight', less_weight);
-
-    // var child_doc = locals[cdt][cdn];
-    // frm.call({        
-    //     method: 'goldapp.golds.doctype.metal_rate.metal_rate.query',
-    //     args: {           
-    //         net_weight:child_doc.custom_net_weight,
-    //         fine_weight: child_doc.custom_fine_weight,
-    //         gross_weight: child_doc.custom_gross_weight,
-    //         less_weight: child_doc.custom_less_weight,
-            
-    //     },
-    //     callback: function(r) {
-    //         var data = r.message[0];
-    //         frm.set_value('custom_total_net_weight', data.net_weight);
-    //         frm.set_value('custom_total_fine_weight', data.fine_weight);
-    //         frm.set_value('custom_total_gross_weight', datagross_weight);
-    //         frm.set_value('custom_total_less_weight', less_weight);
-
-    //     }
-    // });
-     
+    
 }

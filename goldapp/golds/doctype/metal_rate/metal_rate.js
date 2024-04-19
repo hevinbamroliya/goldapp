@@ -2,11 +2,7 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Metal Rate', {
-	// refresh: function(frm) {
-		
-	 
-
-	// }
+	
     get_metal_list: function(frm){
         frm.call({
 			method: 'goldapp.golds.doctype.metal_rate.metal_rate.set_child_table_data',

@@ -61,55 +61,14 @@ $(document).ready(function (){
                         reject();
                         return;
                     }
-                    var posting_date =  this.frm.doc.posting_date
-                    if(this.frm.doc.doctype == "Sales Order" || this.frm.doc.doctype== "Purchase Order"){
-                        posting_date =  this.frm.doc.transaction_date
-                    }
-                    if(data.custom_is_jewellery_item==1){
-                        if(data.custom_mrp_rate||this.frm.doc.doctype=="Stock Entry"){
-                            me.update_table(data).then(row => {
-                                this.play_success_sound();
-                                resolve(row);
-                            }).catch(() => {
-                                this.play_fail_sound();
-                                reject();
-                            });
-                        }else{
-                        frappe.call({
-                            method:'goldapp.golds.doctype.metal_rate.metal_rate.query',                          
-                            args: {
-                                metal_type:data.custom_metal_type,
-                                purity:data.custom_purity,
-                                date:posting_date
-                            },
-                            callback:function(r){
-                                if(r.message==0){                                    
-                                    me.show_alert(__("Gold Rate Not Updated"), "red");
-                                    me.clean_up();
-                                    me.play_fail_sound();
-                                    reject();
-                                    return;
-                                }else{
-                                    me.update_table(data).then(row => {
-                                        this.play_success_sound();
-                                        resolve(row);
-                                    }).catch(() => {
-                                        this.play_fail_sound();
-                                        reject();
-                                    });
-                                }
-                            }
-                        })
-                    }
-                    } else {
-                        me.update_table(data).then(row => {
-                            this.play_success_sound();
-                            resolve(row);
-                        }).catch(() => {
-                            this.play_fail_sound();
-                            reject();
-                        });
-                    }
+                                   
+                    me.update_table(data).then(row => {
+                        this.play_success_sound();
+                        resolve(row);
+                    }).catch(() => {
+                        this.play_fail_sound();
+                        reject();
+                    });                   
 
                 });
                 
@@ -132,31 +91,7 @@ $(document).ready(function (){
             return new Promise(resolve => {
                 let cur_grid = this.frm.fields_dict[this.items_table_name].grid;
                 const {item_code, barcode, batch_no, serial_no, uom, warehouse, custom_size, custom_metal_type, custom_purity, custom_purity_percentage, custom_gross_weight, custom_less_weight, custom_net_weight, custom_westage, custom_fine_weight, custom_gold_rate, custom_gold_value, custom_mrp_rate, custom_other_amount, custom_sales_labour_type, custom_value_added, custom_sales_labour_amount, custom_is_jewellery_item} = data;
-                if(data.custom_is_jewellery_item==1){
-                    if(!data.custom_mrp_rate||this.frm.doc.doctype!="Stock Entry"){
-                        var posting_date =  this.frm.doc.posting_date
-                        if(this.frm.doc.doctype == "Sales Order" || this.frm.doc.doctype== "Purchase Order"){
-                            posting_date =  this.frm.doc.transaction_date
-                        }
-                        frappe.call({
-                            method:'goldapp.golds.doctype.metal_rate.metal_rate.query',
-                            args: {
-                                metal_type:data.custom_metal_type,
-                                purity:data.custom_purity,
-                                date:posting_date
-                            },
-                            callback:function(r){
-                                if(r.message==0){                                 
-                                    this.show_alert(__("Gold Rate Not Updated {0} . "[data.purity]), "red");
-                                    this.clean_up();
-                                    this.play_fail_sound();
-                                    reject();
-                                    return;
-                                }
-                            }
-                        })
-                    }
-                }
+                
                 let row = this.get_row_to_modify_on_scan(item_code, batch_no,  uom, serial_no, barcode, warehouse, custom_size, custom_metal_type, custom_purity,custom_purity_percentage, custom_gross_weight, custom_less_weight, custom_net_weight, custom_westage, custom_fine_weight, custom_gold_rate, custom_gold_value, custom_mrp_rate, custom_other_amount, custom_sales_labour_type, custom_value_added, custom_sales_labour_amount, custom_is_jewellery_item);
     
                 this.is_new_row = false;

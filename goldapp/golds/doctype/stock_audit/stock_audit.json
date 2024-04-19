@@ -15,31 +15,37 @@
   "total_not_in_stock_items",
   "section_break_rhra4",
   "scan_barcode",
+  "column_break_ybx4c",
   "stock_items",
   "section_break_znlnx",
-  "not_in_stock"
+  "not_in_stock",
+  "amended_from"
  ],
  "fields": [
   {
    "default": "Today",
    "fieldname": "audit_date",
    "fieldtype": "Date",
-   "label": "Audit Date"
+   "label": "Audit Date",
+   "read_only": 1
   },
   {
    "fieldname": "total_items_in_stock",
    "fieldtype": "Int",
-   "label": "Total Items in Stock"
+   "label": "Total Items in Stock",
+   "read_only": 1
   },
   {
    "fieldname": "total_not_found_items",
    "fieldtype": "Int",
-   "label": "Total Not Found Items"
+   "label": "Total Not Found Items",
+   "read_only": 1
   },
   {
    "fieldname": "total_not_in_stock_items",
    "fieldtype": "Int",
-   "label": "Total Not In Stock Items"
+   "label": "Total Not In Stock Items",
+   "read_only": 1
   },
   {
    "fieldname": "stock_items",
@@ -49,8 +55,9 @@
   },
   {
    "fieldname": "not_in_stock",
-   "fieldtype": "Data",
-   "label": "Not in Stock"
+   "fieldtype": "Table",
+   "label": "Not in Stock",
+   "options": "No In Stock"
   },
   {
    "fieldname": "scan_barcode",
@@ -69,11 +76,25 @@
   {
    "fieldname": "section_break_znlnx",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_ybx4c",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Stock Audit",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-03-21 10:26:17.879021",
+ "modified": "2024-04-16 12:44:15.872042",
  "modified_by": "Administrator",
  "module": "golds",
  "name": "Stock Audit",

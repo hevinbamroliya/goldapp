@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "MAT-GL-.YYYY.-.#####",
  "creation": "2024-04-03 12:30:10.875021",
  "default_view": "List",
  "doctype": "DocType",
@@ -9,24 +10,26 @@
  "field_order": [
   "posting_date",
   "item_code",
-  "uom",
+  "serial_no",
   "purity",
   "purity_percentage",
-  "serial_no",
-  "warehouse",
+  "column_break_srzsu",
   "party_type",
   "party",
+  "voucher_no",
+  "voucher_type",
+  "warehouse",
   "column_break_c0fhb",
   "debit_amount",
   "debit_gold",
   "credit_amount",
   "credit_gold",
+  "fiscal_year",
+  "column_break_7mudv",
   "account_currency",
   "debit_amount_in_account_currency",
   "credit_amount_in_account_currency",
-  "voucher_type",
-  "voucher_no",
-  "fiscal_year",
+  "uom",
   "is_cancelled",
   "amended_from"
  ],
@@ -61,9 +64,11 @@
   },
   {
    "fieldname": "serial_no",
-   "fieldtype": "Link",
+   "fieldtype": "Data",
    "label": "Serial No",
-   "options": "Serial No"
+   "max_height": "25px",
+   "print_width": "100px",
+   "width": "100px"
   },
   {
    "fieldname": "warehouse",
@@ -84,7 +89,8 @@
   {
    "fieldname": "debit_amount",
    "fieldtype": "Currency",
-   "label": "Debit Amount"
+   "label": "Debit Amount",
+   "options": "Company:company:default_currency"
   },
   {
    "fieldname": "debit_gold",
@@ -94,7 +100,8 @@
   {
    "fieldname": "credit_amount",
    "fieldtype": "Currency",
-   "label": "Credit Amount"
+   "label": "Credit Amount",
+   "options": "Company:company:default_currency"
   },
   {
    "fieldname": "credit_gold",
@@ -102,19 +109,16 @@
    "label": "Credit Gold"
   },
   {
-   "fieldname": "account_currency",
-   "fieldtype": "Data",
-   "label": "Account Currency"
-  },
-  {
    "fieldname": "debit_amount_in_account_currency",
    "fieldtype": "Currency",
-   "label": "Debit Amount in Account Currency"
+   "label": "Debit Amount in Account Currency",
+   "options": "Company:company:default_currency"
   },
   {
    "fieldname": "credit_amount_in_account_currency",
    "fieldtype": "Currency",
-   "label": "Credit Amount in Account Currency"
+   "label": "Credit Amount in Account Currency",
+   "options": "Company:company:default_currency"
   },
   {
    "fieldname": "voucher_type",
@@ -144,23 +148,38 @@
    "fieldtype": "Link",
    "label": "Amended From",
    "no_copy": 1,
-   "options": "Gold Ledger Entry",
+   "options": "Gold Ledger",
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
   },
   {
    "fieldname": "column_break_c0fhb",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_srzsu",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_7mudv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "account_currency",
+   "fieldtype": "Data",
+   "label": "Account Currency"
   }
  ],
+ "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-04-05 09:53:54.299287",
+ "modified": "2024-04-18 16:23:37.294919",
  "modified_by": "Administrator",
  "module": "golds",
- "name": "Gold Ledger Entry",
+ "name": "Gold Ledger",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

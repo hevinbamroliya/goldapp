@@ -10,22 +10,13 @@ frappe.ui.form.on('Purchase Receipt', {
             }            
        });
     }, 
-    
-    
-    scan_barcode : function(frm){
-        result(frm)
-    }
-   
+      
 })
 
 
 
 frappe.ui.form.on('Purchase Receipt Item', {
       
-    // item_code: function(frm, cdt, cdn){
-    //     fetchGoldRate(frm, cdt, cdn);
-    // },
-
     custom_gross_weight: function(frm, cdt, cdn) {
         updateItem(frm, cdt, cdn);
         calculateTotal(frm);
@@ -33,9 +24,13 @@ frappe.ui.form.on('Purchase Receipt Item', {
     custom_less_weight: function(frm, cdt, cdn) {
         updateItem(frm, cdt, cdn);
         calculateTotal(frm);
-    }, 
+    },
     custom_purity_percentage: function(frm, cdt, cdn) {
         updateItem(frm, cdt, cdn);
+    }, 
+    custom_gold_rate: function(frm, cdt, cdn) {
+        updateItem(frm, cdt, cdn);
+        finevalue(frm, cdt, cdn);
     }, 
     qty: function(frm, cdt, cdn) {
         saleslabouramount(frm, cdt, cdn);
@@ -199,46 +194,8 @@ function labouramount(frm, cdt, cdn){
 }
 
 
-//-----fetch Gold Rate------//
-let isresult = false;
-function result(frm){
-    
-    isresult = true;
-    setTimeout(function() {
-        isresult = false;
-        
-    }, 3000);
-
-}
 
 
-function fetchGoldRate(frm, cdt, cdn) {
-
-    if(!isresult){
-        var child_doc = locals[cdt][cdn];
-        var custom_purity = child_doc.custom_purity;
-        var custom_metal = child_doc.custom_metal_type;
-        var date = frm.doc.transaction_date;
-        
-        console.log(data);
-    
-        frm.call({        
-            method: 'goldapp.golds.doctype.metal_rate.metal_rate.query',
-            args: {           
-            
-                purity:custom_purity,
-                metal_type:custom_metal,
-                date:date,       
-                
-            },
-            callback: function(r) {
-                var rate = r.message[0];
-                frappe.model.set_value(cdt, cdn, 'custom_gold_rate', rate);
-
-            }
-        });
-    }
-}
 //-----set all Total in purchase order------//
 function  calculateTotal(frm){
     var net_weight = 0, fine_weight = 0, gross_weight = 0,less_weight = 0;
