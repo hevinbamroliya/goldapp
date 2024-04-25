@@ -15,6 +15,8 @@
   "total_not_in_stock_items",
   "section_break_rhra4",
   "scan_barcode",
+  "column_break_oihlh",
+  "total_of_audited_item",
   "column_break_ybx4c",
   "stock_items",
   "section_break_znlnx",
@@ -90,11 +92,22 @@
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
+  },
+  {
+   "fieldname": "column_break_oihlh",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_of_audited_item",
+   "fieldtype": "Int",
+   "label": "Total of Audited Item",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2024-04-16 12:44:15.872042",
+ "modified": "2024-04-23 17:58:38.034331",
  "modified_by": "Administrator",
  "module": "golds",
  "name": "Stock Audit",

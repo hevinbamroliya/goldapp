@@ -6,21 +6,20 @@ from frappe.model.document import Document
 
 class MetalRate(Document):
     pass
+    # def validate(self):
+    #     for i in self.get('items'):
+    #         if i.rate <=0:
+    #             frappe.msgprint("Plase checked Item Rate")     
+   
+        
+
+
 
 
 @frappe.whitelist()
 def set_child_table_data(docname):
     return frappe.get_all("Purity", fields=["metal_type", "purity"])
 
-# @frappe.whitelist()
-# @frappe.validate_and_sanitize_search_inputs
-# def query(doctype, txt, searchfield, start, page_len, filters):
-#     return frappe.db.sql("""SELECT
-# 								rate
-# 							FROM `tabDaily Metal Rate`
-# 							WHERE
-# 								purity = '%s' 
-# 						""" % filters.get('purity'))
 
 
 @frappe.whitelist()

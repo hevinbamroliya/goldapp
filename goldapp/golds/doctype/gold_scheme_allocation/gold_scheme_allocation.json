@@ -15,35 +15,39 @@
   "scheme_end_date",
   "installment_amount",
   "calculate_due_dates",
+  "column_break_s7okw",
+  "status",
   "installment_details",
   "amount_installment_details",
   "total_investment",
   "total_due",
   "total_overdue",
   "total_paid_amount",
-  "status",
   "company"
  ],
  "fields": [
   {
    "fieldname": "customer",
-   "fieldtype": "Data",
-   "label": "Customer"
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "Customer"
   },
   {
    "fieldname": "scheme_name",
-   "fieldtype": "Data",
-   "label": "Scheme Name"
+   "fieldtype": "Select",
+   "label": "Scheme Name",
+   "options": "\nGold Monetisation Scheme\nSovereign Gold Bond Scheme\nGold Coin and Bullion Scheme"
   },
   {
    "fieldname": "enroll_date",
-   "fieldtype": "Data",
+   "fieldtype": "Date",
    "label": "Enroll Date"
   },
   {
    "fieldname": "scheme_type",
-   "fieldtype": "Data",
-   "label": "Scheme Type"
+   "fieldtype": "Link",
+   "label": "Scheme Type",
+   "options": "Scheme Type"
   },
   {
    "fieldname": "scheme_tenure",
@@ -52,17 +56,17 @@
   },
   {
    "fieldname": "scheme_end_date",
-   "fieldtype": "Data",
+   "fieldtype": "Date",
    "label": "Scheme End Date"
   },
   {
    "fieldname": "installment_amount",
-   "fieldtype": "Data",
+   "fieldtype": "Currency",
    "label": "Installment Amount"
   },
   {
    "fieldname": "calculate_due_dates",
-   "fieldtype": "Data",
+   "fieldtype": "Date",
    "label": "Calculate Due Dates"
   },
   {
@@ -72,27 +76,27 @@
   },
   {
    "fieldname": "amount_installment_details",
-   "fieldtype": "Data",
+   "fieldtype": "Date",
    "label": "Amount Installment Details"
   },
   {
    "fieldname": "total_investment",
-   "fieldtype": "Data",
+   "fieldtype": "Currency",
    "label": "Total investment"
   },
   {
    "fieldname": "total_due",
-   "fieldtype": "Data",
+   "fieldtype": "Date",
    "label": "Total Due"
   },
   {
    "fieldname": "total_overdue",
-   "fieldtype": "Data",
+   "fieldtype": "Currency",
    "label": "Total Overdue"
   },
   {
    "fieldname": "total_paid_amount",
-   "fieldtype": "Data",
+   "fieldtype": "Currency",
    "label": "Total Paid Amount"
   },
   {
@@ -104,11 +108,15 @@
    "fieldname": "company",
    "fieldtype": "Data",
    "label": "Company"
+  },
+  {
+   "fieldname": "column_break_s7okw",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-28 10:40:26.127682",
+ "modified": "2024-04-22 10:01:33.917709",
  "modified_by": "Administrator",
  "module": "golds",
  "name": "Gold Scheme Allocation",

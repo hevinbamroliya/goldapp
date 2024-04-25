@@ -18,9 +18,9 @@
   "is_free_installment_scheme",
   "section_break_1zxig",
   "no_of_free_installment",
-  "paid_installment",
-  "column_break_cpb4u",
   "scheme_details",
+  "column_break_cpb4u",
+  "paid_installment",
   "scheme_rule"
  ],
  "fields": [
@@ -78,12 +78,12 @@
   },
   {
    "fieldname": "scheme_details",
-   "fieldtype": "Data",
+   "fieldtype": "Small Text",
    "label": "Scheme Details"
   },
   {
    "fieldname": "scheme_rule",
-   "fieldtype": "Data",
+   "fieldtype": "Small Text",
    "label": "Scheme Rule"
   },
   {
@@ -101,7 +101,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-04-18 11:02:08.661236",
+ "modified": "2024-04-22 10:19:54.513138",
  "modified_by": "Administrator",
  "module": "golds",
  "name": "Gold Scheme",

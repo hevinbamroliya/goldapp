@@ -1,0 +1,5 @@
+[pre_model_sync]
+
+
+[post_model_sync]
+execute:from goldapp.setup import setup_fixtures; setup_fixtures()

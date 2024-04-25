@@ -13,7 +13,7 @@ frappe.ui.form.on('Stock Audit', {
 			
 				if (r.message) {
 					frm.clear_table("stock_items");
-					$.each(r.message, function (data) {
+					$.each(r.message, function (index,data) {
 						var child = frm.add_child("stock_items");
 						frappe.model.set_value(child.doctype, child.name, "item_code", data.item_code);
 						frappe.model.set_value(child.doctype, child.name, "serial_no", data.name);						
@@ -38,17 +38,19 @@ frappe.ui.form.on('Stock Audit', {
 											
 						var barcode = r.message[0].name;
 						var status = r.message[0].status;
-
+						 
 						if (frm.doc.scan_barcode) {
 							frm.doc.stock_items.forEach(function (d) {
 								if (d.serial_no === barcode) {
 									if(d.qty_checked !== 1){
 										// frappe.model.set_value(d.doctype, d.name, 'qty_checked', 1);
 										d.qty_checked = 1;
+										audited_stock = auditedstock()
+										frm.set_value('total_of_audited_item',audited_stock);
 										frappe.msgprint(d.serial_no + " This Serial No. Availabel in Stock."); 
 									}
 									else{		
-									frappe.msgprint(d.serial_no + " This Serial No. Checked in Stock."); 
+									frappe.msgprint(d.serial_no + " This Serial No. alredy Checked in Stock."); 
 									}																		
 								}
 							});
@@ -81,16 +83,16 @@ frappe.ui.form.on('Stock Audit', {
 							if(code){
 								not_found += 1;
 								frm.set_value('total_not_found_items', not_found);
-								frappe.msgprint(barcode +" This Serial No added in Not in Stock table.");
+								frappe.msgprint(barcode +" This Serial No added in Not Found in Stock table.");
 							}
 							else{
-								frappe.msgprint(barcode +" this Serial No alredy Checked in Not in Stock table")
+								frappe.msgprint(barcode +" this Serial No alredy Checked in Not Found in Stock table")
 							}	
 												
 						}						
 					}
 					else { 
-						frappe.msgprint("Barcode not found in the system."); 
+						frappe.msgprint("Barcode not found in this Compnay."); 
 					}
 					frm.set_value('scan_barcode', '');
 				}
@@ -116,4 +118,12 @@ function handleBarcodeScan(scannedBarcode) {
     }
 	
 }
+
+//-- this Function is total count of audited stock ---//
+var audited_stock = 0;
+function auditedstock(){
+	audited_stock += 1;
+	return audited_stock
+}
+
 

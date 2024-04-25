@@ -14,7 +14,7 @@ app_include_js = ["/assets/goldapp/js/barcode_scanning.js"]
 scheduler_events = {
 	"cron": {
 	    "* * * * *": [
-	        "goldapp.golds.doctype.stock_audit.stock_audit.cron"
+	        "goldapp.golds.doctype.gold_scheme.gold_scheme.set_status"
 	        ]
 	},
 }
@@ -27,9 +27,9 @@ doc_events = {
 			"goldapp.golds.override.custom_serial_no.custom_update_serial_nos_after_submit",
 			"goldapp.golds.doctype.gold_ledger.gold_ledger.create_gold_ledger",
 		],
-		"on_cancel":(
-			"goldapp.golds.doctype.gold_ledger.gold_ledger.remove_gold_ledger"
-		)	
+		# "on_cancel":(
+		# 	"goldapp.golds.doctype.gold_ledger.gold_ledger.remove_gold_ledger"
+		# )	
     },
 	
 	"Purchase Receipt": {
@@ -37,9 +37,7 @@ doc_events = {
 			"goldapp.golds.override.custom_serial_no.custom_update_serial_nos_after_submit",
 			"goldapp.golds.doctype.gold_ledger.gold_ledger.create_gold_ledger",
 		],
-		"on_cancel":(
-			"goldapp.golds.doctype.gold_ledger.gold_ledger.remove_gold_ledger"
-		)	
+		
     },
 
 	"purchase Invoice":{
@@ -47,6 +45,13 @@ doc_events = {
 	},
 	"Delivery Note":{
 		"on_submit":"goldapp.golds.doctype.gold_ledger.gold_ledger.create_gold_ledger"
+	},
+	# "Property Setter": {
+	# 	"validate": "goldapp.golds.override.property_setter.validate",
+	# 	"on_trash": "goldapp.golds.override.property_setter.on_trash",
+	# },
+	"Sales Invoice":{
+		"validate": "goldapp.golds.override.items.validate"
 	}
 }
 
@@ -69,7 +74,6 @@ doctype_js = {"Purchase Order" : "public/js/purchase_order_item.js",
 			  "Purchase Receipt": "public/js/purchase_receipt_item.js",
 			  "Delivery Note": "public/js/delivery_note_item.js",
 			  "Serial No": "public/js/serial_no.js",
-			#   "Barcode Scanner":"public/js/custom_barcode_scanner.js",	
 			  }
 
 fixtures =[    
@@ -77,6 +81,26 @@ fixtures =[
 	'Property Setter',
 	
 ]
+
+
+gold_doctypes = [
+	"Item",
+	"Sales Invoice",
+	"Sales Invoice Item",
+	"Sales Order",
+	"Sales Order Item",
+	"Stock Entry",
+	"Stock Entry Details",
+	"Purchase Invice",
+	"Purchase Invoice Item",
+	"Purchase Order",
+	"Purchase Order Item",
+	"Purchase Receipt",
+	"Purchase Receipt Item",
+	"Delivery Note",
+	"Delivery Note Item",
+	"Serial No"
+	]
 
 
 

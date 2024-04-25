@@ -12,11 +12,10 @@ frappe.ui.form.on('Sales Order', {
                 gold_value = custom_gold_rate * custom_net_weight;
             }
             frappe.model.set_value(row.doctype, row.name, 'custom_gold_value', gold_value); 
-       });
-       
-    }
-
+       });       
+    }, 
 })
+
 frappe.ui.form.on('Sales Order Item', {
     
         item_code: function(frm, cdt, cdn){
@@ -46,8 +45,7 @@ frappe.ui.form.on('Sales Order Item', {
         },
         custom_other_amount: function(frm, cdt, cdn){
             tatoalamount(frm, cdt, cdn);
-        },
-         
+        },         
         custom_sales_labour_type: function(frm, cdt, cdn){
             saleslabouramount(frm, cdt, cdn);
         },
@@ -88,24 +86,6 @@ function updateItem(frm, cdt, cdn) {
 }
 
 
-
-//-----calculate custom net weight , custom fine weight-------//
-// function finevalue(frm,cdt,cdn){
-//     var child_doc = locals[cdt][cdn];
-
-//     var custom_gold_rate = child_doc.custom_gold_rate;
-//     var custom_fine_weight = child_doc.custom_fine_weight;
-
-//     var fine_value = custom_fine_weight * custom_gold_rate;  
-
-//     if(custom_fine_weight && custom_gold_ratev){
-              
-//         frappe.model.set_value(cdt, cdn, 'custom_fine_value', fine_value);
-        
-//     }
-// }
-
-
 //-----calculate custom amount------//
 function tatoalamount(frm, cdt, cdn){
     var child_doc = locals[cdt][cdn];
@@ -117,16 +97,15 @@ function tatoalamount(frm, cdt, cdn){
     var total_amount = custom_gold_value + custom_other_amount + custom_sales_labour_amount;
     
     frappe.model.set_value(cdt, cdn, 'custom_total_amount', total_amount);
-        
-
-
+    frappe.model.set_value(cdt, cdn, 'rate', total_amount);
 }
+
+
 
 //-----calculate custom sales labour amountt------//
 function saleslabouramount(frm, cdt, cdn){
     var child_doc = locals[cdt][cdn];
 
-    var custom_sales_labour_rate = child_doc.custom_sales_labour_rate;
     var quantity = child_doc.qty;
     var salestype = child_doc.custom_sales_labour_type;
     var custom_gold_rate = child_doc.custom_gold_rate;
@@ -138,24 +117,28 @@ function saleslabouramount(frm, cdt, cdn){
     
 
     if(salestype == 'Flat'){
-        var flat = custom_sales_labour_rate * quantity;
+        var flat = 36 * quantity;
         frappe.model.set_value(cdt, cdn, 'custom_sales_labour_amount', flat);
+        frappe.model.set_value(cdt, cdn, 'custom_sales_labour_rate', 36);
        
     }
 
     if(salestype == 'On Gold Value Percentage'){
-        var Percentage = fine_value * (custom_sales_labour_rate / 100);
+        var Percentage = fine_value * (15 / 100);
         frappe.model.set_value(cdt, cdn, 'custom_sales_labour_amount', Percentage);
+        frappe.model.set_value(cdt, cdn, 'custom_sales_labour_rate', 15);
     }
 
     if(salestype == 'On Gross Weight Per Gram'){
-        var Percentage = custom_gross_weight * custom_sales_labour_rate;
+        var Percentage = custom_gross_weight * 25;
         frappe.model.set_value(cdt, cdn, 'custom_sales_labour_amount', Percentage);
+        frappe.model.set_value(cdt, cdn, 'custom_sales_labour_rate', 25);
     }
 
     if(salestype == 'On Net Weight Per Gram'){
-        var netweight =  custom_net_weight * custom_sales_labour_rate;
+        var netweight =  custom_net_weight * 30;
         frappe.model.set_value(cdt, cdn, 'custom_sales_labour_amount', netweight);
+        frappe.model.set_value(cdt, cdn, 'custom_sales_labour_rate', 30);
     }   
 }
 
@@ -181,6 +164,8 @@ function fetchGoldRate(frm, cdt, cdn) {
         callback: function(r) {
             var rate = r.message[0];
             frappe.model.set_value(cdt, cdn, 'custom_gold_rate', rate);
+            
+           
 
         }
     });

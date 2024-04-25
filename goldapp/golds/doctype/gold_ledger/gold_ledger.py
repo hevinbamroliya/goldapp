@@ -56,7 +56,7 @@ def create_gold_ledger(controller, parentfield):
                     else:
                         doc.credit_amount = entry.incoming_rate
                         doc.credit_gold = serial_entry.custom_fine_weight
-                    frappe.show_alert(__("Gold Ledger " + doc.name + " is Crated "), "green")
+                    frappe.throw(("Created Gold Ledger"), doc.name)
                     doc.submit()
 
 

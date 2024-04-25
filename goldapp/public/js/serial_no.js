@@ -8,7 +8,4 @@ frappe.ui.form.on('Serial No', {
             frm.set_df_property(fields[i], "read_only", 1);
         }
     }
-
-
-
 });
