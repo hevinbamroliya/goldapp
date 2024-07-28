@@ -15,16 +15,55 @@ frappe.ui.form.on('Sales Invoice', {
        });
        
     },
-    refresh: function(frm){
-        calculateTotal(frm);        
-    }
+    // refresh: function(frm){
+    //     calculateTotal(frm);        
+    // },
+    refresh: function(frm) {
+       
+        frm.add_custom_button(__('Get User Email Address'), function(){
+            erpnext.utils.map_current_doc({
+                method: "erpnext.selling.doctype.sales_order.sales_order.make_sales_invoice",
+                source_doctype: "Task",
+                target: me.frm,
+                setters: {
+                    project: me.frm.doc.project || undefined,
+                    
+                },
+                // columns: ["name", "subject", "status"],
+                get_query_filters: {
+                    // docstatus: 1,
+                    // status: ["not in", ["Closed", "On Hold"]],
+                    // per_billed: ["<", 99.99],
+                    company: me.frm.doc.company
+                }
+            })
+
+        }, __("Utilities"));
+       
+      }
+
+    // custom_task: function(frm){
+    //     frm.call({        
+    //         method: 'goldapp.golds.doctype.metal_rate.metal_rate.get_custom_task',
+    //         args: {           
+    //            task:frm.doc.custom_task     
+                
+    //         },
+    //         callback: function(r) {
+    //             var rate = parseInt(r.message);
+    //             frappe.model.set_value(cdt, cdn, '', rate);
+    
+    //         }
+    //     });
+    // }
+
+    
 
 })
 
 
 frappe.ui.form.on('Sales Invoice Item', {
-    
-        
+            
     item_code: function(frm, cdt, cdn){
         fetchGoldRate(frm, cdt, cdn);
     },
@@ -60,9 +99,7 @@ frappe.ui.form.on('Sales Invoice Item', {
     },      
     custom_sales_labour_type: function(frm, cdt, cdn){
         saleslabouramount(frm, cdt, cdn);
-    },
-        
-        
+    },  
 
    
 
@@ -183,7 +220,6 @@ function fetchGoldRate(frm, cdt, cdn) {
         }
     });
 }
-
 
 
 

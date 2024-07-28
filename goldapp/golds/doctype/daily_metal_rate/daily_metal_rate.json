@@ -22,19 +22,21 @@
    "fieldname": "purity",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "purity"
+   "label": "purity",
+   "read_only": 1
   },
   {
    "fieldname": "metal_type",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Metal Type"
+   "label": "Metal Type",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-04-03 11:36:29.736111",
+ "modified": "2024-04-29 10:34:57.263605",
  "modified_by": "Administrator",
  "module": "golds",
  "name": "Daily Metal Rate",

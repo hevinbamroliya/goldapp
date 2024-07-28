@@ -5,20 +5,12 @@ import frappe
 from frappe.model.document import Document
 
 class MetalRate(Document):
-    pass
-    # def validate(self):
-    #     for i in self.get('items'):
-    #         if i.rate <=0:
-    #             frappe.msgprint("Plase checked Item Rate")     
-   
-        
+    @frappe.whitelist()
+    def set_child_table_data(self):
+        return frappe.get_all("Purity", fields=["metal_type", "purity"])       
 
 
 
-
-@frappe.whitelist()
-def set_child_table_data(docname):
-    return frappe.get_all("Purity", fields=["metal_type", "purity"])
 
 
 
@@ -38,6 +30,10 @@ def query(purity, date, metal_type):
         frappe.msgprint("this date " + date + " Metal Rate Not Avialabel ather wise not submited")
         return 0
 
+
+@frappe.whitelist()
+def get_custom_task(task)
+    return frappe.db.get_value("Project Template Task",{'name':task},['custom_govt_fees','custom_profesional_fees'])
 
 
 

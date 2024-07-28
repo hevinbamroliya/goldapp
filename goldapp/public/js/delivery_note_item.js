@@ -86,6 +86,7 @@ function tatoalamount(frm, cdt, cdn){
     var total_amount = custom_gold_value + custom_other_amount + custom_labour_amount;
     console.log(total_amount);   
     frappe.model.set_value(cdt, cdn, 'custom_total_amount', total_amount);
+    frappe.model.set_value(cdt, cdn, 'rate', total_amount);
         
     
 

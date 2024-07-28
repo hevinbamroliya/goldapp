@@ -1,8 +1,6 @@
 // Copyright (c) 2024, hevin and contributors
 // For license information, please see license.txt
 
-frappe.provide("erpnext.stock");
-frappe.provide("erpnext.accounts.dimensions");
 
 frappe.ui.form.on('Stock Audit', {
 	onload: function (frm) {

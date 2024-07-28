@@ -4,10 +4,10 @@
 frappe.ui.form.on('Gold Ledger', {
 	refresh: function(frm) {
 		frm.page.btn_secondary.hide();
-		frm.hide('status');		
+		// frm.hide('status');		
 	},
 	
-	on_submit: function(frm){
+	on_save: function(frm){
 		frm.show_alert(__("Gold Ledger is save"), "green");
 	}
 });

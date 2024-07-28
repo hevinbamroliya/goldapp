@@ -42,6 +42,9 @@ frappe.ui.form.on('Stock Entry Detail', {
     custom_labour_type: function(frm, cdt, cdn){
         labouramount(frm, cdt, cdn);
     },  
+    s_warehouse:function(frm){
+        tatoalamount(frm);
+    }  
 
 });
 

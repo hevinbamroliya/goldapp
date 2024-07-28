@@ -8,7 +8,9 @@ frappe.ui.form.on('Purchase Invoice', {
                 frappe.model.set_value(row.doctype, row.name, 'custom_fine_value', fine_value);                
             }            
        });
-    },  
+    }, 
+    
+    
    
 })
 
@@ -17,9 +19,11 @@ frappe.ui.form.on('Purchase Invoice Item', {
     
     custom_gross_weight: function(frm, cdt, cdn) {
         updateItem(frm, cdt, cdn);
+        calculateTotal(frm, cdt, cdn);
     },
     custom_less_weight: function(frm, cdt, cdn) {
         updateItem(frm, cdt, cdn);
+        calculateTotal(frm, cdt, cdn);
     }, 
     custom_purity_percentage: function(frm, cdt, cdn) {
         updateItem(frm, cdt, cdn);
@@ -27,7 +31,10 @@ frappe.ui.form.on('Purchase Invoice Item', {
     qty: function(frm, cdt, cdn) {
         saleslabouramount(frm, cdt, cdn);
         labouramount(frm, cdt, cdn);
-    },  
+    }, 
+    custom_fine_value: function(frm, cdt, cdn){
+        tatoalamount(frm, cdt, cdn);
+    }, 
     custom_labour_amount: function(frm, cdt, cdn){
         tatoalamount(frm, cdt, cdn);
     },
@@ -41,15 +48,15 @@ frappe.ui.form.on('Purchase Invoice Item', {
         finevalue(frm, cdt, cdn);
         calculateTotal(frm, cdt, cdn);
     },
+    custom_net_weight: function(frm, cdt, cdn){       
+        calculateTotal(frm, cdt, cdn);
+    },
    
     custom_sales_labour_type: function(frm, cdt, cdn){
         saleslabouramount(frm, cdt, cdn);
     },
     custom_labour_type: function(frm, cdt, cdn){
         labouramount(frm, cdt, cdn);
-    },
-    custom_total_amount: function(frm, cdt, cdn){
-        calculateTotal(frm, cdt, cdn);
     },
     
 
@@ -73,7 +80,7 @@ function updateItem(frm, cdt, cdn) {
     
 
     frappe.model.set_value(cdt, cdn, 'custom_net_weight', custom_net_weight);
-    
+    frm.set_value('total', custom_gold_rate)
     if(custom_net_weight && custom_purity_percentage ){
         frappe.model.set_value(cdt, cdn, 'custom_fine_weight', fine_weight);
     }

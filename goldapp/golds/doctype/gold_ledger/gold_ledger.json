@@ -172,10 +172,11 @@
   }
  ],
  "hide_toolbar": 1,
+ "in_create": 1,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-04-18 16:23:37.294919",
+ "modified": "2024-04-29 12:30:59.643063",
  "modified_by": "Administrator",
  "module": "golds",
  "name": "Gold Ledger",

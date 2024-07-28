@@ -1,17 +1,14 @@
 frappe.ui.form.on('Purchase Receipt', {
-    custom_booking_rate: function(frm) {        
-        var custom_booking_rate = frm.doc.custom_booking_rate;     
-        frm.doc.items.forEach(function(row) {
-            var custom_fine_weight = row.custom_fine_weight;                      
+    custom_booking_rate: function (frm) {       
+        var custom_booking_rate = frm.doc.custom_booking_rate;
+        frm.doc.items.forEach(function (row) {
+            var custom_fine_weight = row.custom_fine_weight;
             if (custom_fine_weight && custom_booking_rate) {
-                var fine_value = custom_fine_weight * custom_booking_rate;               
-                frappe.model.set_value(row.doctype, row.name, 'custom_fine_value', fine_value); 
-                               
-            }            
-       });
+                var fine_value = custom_fine_weight * custom_booking_rate;
+                frappe.model.set_value(row.doctype, row.name, 'custom_fine_value', fine_value);
+            }
+        });
     },
-     
-      
 })
 
 
@@ -38,6 +35,9 @@ frappe.ui.form.on('Purchase Receipt Item', {
         labouramount(frm, cdt, cdn);
     },  
     custom_labour_amount: function(frm, cdt, cdn){
+        tatoalamount(frm, cdt, cdn);
+    },
+    custom_fine_value: function(frm, cdt, cdn){
         tatoalamount(frm, cdt, cdn);
     },
     custom_gold_value: function(frm, cdt, cdn){

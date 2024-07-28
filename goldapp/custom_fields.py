@@ -13,7 +13,7 @@ CUSTOM_FIELDS = {
             "insert_after": "section_break_30",
         },
         {
-            "fieldname": "custom_fine_net_weight",
+            "fieldname": "custom_total_fine_weight",
             "fieldtype": "Float",
             "label": "Total Fine Weight",            
             "insert_after": "custom_total_net_weight",            
@@ -21,7 +21,7 @@ CUSTOM_FIELDS = {
         {
             "fieldname": "custom_column_break_ijk7e",
             "fieldtype": "Column Break",            
-            "insert_after": "custom_fine_net_weight",            
+            "insert_after": "custom_total_fine_weight",            
         },
         {
             "fieldname": "custom_total_gross_weight",
