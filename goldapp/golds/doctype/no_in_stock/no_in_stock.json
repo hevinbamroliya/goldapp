@@ -1,45 +1,37 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2024-02-28 12:14:01.676764",
+ "creation": "2024-04-12 17:25:14.028643",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "metal_type",
-  "purity",
-  "rate"
+  "item_code",
+  "serial_no"
  ],
  "fields": [
   {
-   "fieldname": "rate",
-   "fieldtype": "Currency",
-   "in_list_view": 1,
-   "label": "Rate",
-   "reqd": 1
-  },
-  {
-   "fieldname": "purity",
+   "fieldname": "item_code",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "purity",
+   "label": "Item Code",
    "read_only": 1
   },
   {
-   "fieldname": "metal_type",
+   "fieldname": "serial_no",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Metal Type",
+   "label": "Serial No",
    "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-04-29 10:34:57.263605",
+ "modified": "2024-04-12 17:27:51.157067",
  "modified_by": "Administrator",
  "module": "golds",
- "name": "Daily Metal Rate",
+ "name": "No In Stock",
  "owner": "Administrator",
  "permissions": [],
  "sort_field": "modified",

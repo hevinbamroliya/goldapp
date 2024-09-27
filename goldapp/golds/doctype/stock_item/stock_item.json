@@ -8,32 +8,36 @@
  "field_order": [
   "serial_no",
   "item_code",
-  "qty"
+  "qty_checked"
  ],
  "fields": [
-  {
-   "fieldname": "item_code",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Item Code"
-  },
-  {
-   "fieldname": "qty",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Qty"
-  },
   {
    "fieldname": "serial_no",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Serial NO"
+   "label": "Serial No",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "qty_checked",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Qty Checked",
+   "read_only": 1
+  },
+  {
+   "fieldname": "item_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Item Code",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-03-21 10:40:47.324109",
+ "modified": "2024-04-19 17:04:16.252506",
  "modified_by": "Administrator",
  "module": "golds",
  "name": "Stock Item",

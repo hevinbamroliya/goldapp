@@ -1,7 +1,8 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2024-02-28 10:19:35.338721",
+ "autoname": "MAT-GL-.YYYY.-.#####",
+ "creation": "2024-04-03 12:30:10.875021",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -9,25 +10,28 @@
  "field_order": [
   "posting_date",
   "item_code",
-  "stock_uom",
+  "serial_no",
   "purity",
   "purity_percentage",
-  "serial_no",
-  "warehouse",
+  "column_break_srzsu",
   "party_type",
   "party",
-  "debit",
-  "section_break_gmxon",
+  "voucher_no",
+  "voucher_type",
+  "warehouse",
+  "column_break_c0fhb",
+  "debit_amount",
   "debit_gold",
-  "credit",
+  "credit_amount",
   "credit_gold",
+  "fiscal_year",
+  "column_break_7mudv",
   "account_currency",
   "debit_amount_in_account_currency",
   "credit_amount_in_account_currency",
-  "voucher_type",
-  "voucher_no",
-  "fiscal_year",
-  "is_cancelled"
+  "uom",
+  "is_cancelled",
+  "amended_from"
  ],
  "fields": [
   {
@@ -42,13 +46,14 @@
    "options": "Item"
   },
   {
-   "fieldname": "stock_uom",
-   "fieldtype": "Data",
-   "label": "UOM"
+   "fieldname": "uom",
+   "fieldtype": "Link",
+   "label": "UOM",
+   "options": "UOM"
   },
   {
    "fieldname": "purity",
-   "fieldtype": "Text",
+   "fieldtype": "Link",
    "label": "Purity",
    "options": "Purity"
   },
@@ -59,8 +64,11 @@
   },
   {
    "fieldname": "serial_no",
-   "fieldtype": "Text",
-   "label": "Serial No"
+   "fieldtype": "Data",
+   "label": "Serial No",
+   "max_height": "25px",
+   "print_width": "100px",
+   "width": "100px"
   },
   {
    "fieldname": "warehouse",
@@ -70,60 +78,59 @@
   },
   {
    "fieldname": "party_type",
-   "fieldtype": "Select",
-   "label": "Party Type",
-   "options": "Customer\nSupplier\nEmployee\nShareholder"
+   "fieldtype": "Data",
+   "label": "Party Type"
   },
   {
    "fieldname": "party",
-   "fieldtype": "Link",
-   "label": "Party",
-   "options": "Party Type"
+   "fieldtype": "Data",
+   "label": "Party"
   },
   {
-   "fieldname": "debit",
-   "fieldtype": "Data",
-   "label": "Debit Amount"
+   "fieldname": "debit_amount",
+   "fieldtype": "Currency",
+   "label": "Debit Amount",
+   "options": "Company:company:default_currency"
   },
   {
    "fieldname": "debit_gold",
-   "fieldtype": "Data",
+   "fieldtype": "Float",
    "label": "Debit Gold"
   },
   {
-   "fieldname": "credit",
-   "fieldtype": "Data",
-   "label": "Credit Amount"
+   "fieldname": "credit_amount",
+   "fieldtype": "Currency",
+   "label": "Credit Amount",
+   "options": "Company:company:default_currency"
   },
   {
    "fieldname": "credit_gold",
-   "fieldtype": "Data",
+   "fieldtype": "Float",
    "label": "Credit Gold"
   },
   {
-   "fieldname": "account_currency",
-   "fieldtype": "Data",
-   "label": "Account Currency"
-  },
-  {
    "fieldname": "debit_amount_in_account_currency",
-   "fieldtype": "Data",
-   "label": "Debit Amount in Account Currency"
+   "fieldtype": "Currency",
+   "label": "Debit Amount in Account Currency",
+   "options": "Company:company:default_currency"
   },
   {
    "fieldname": "credit_amount_in_account_currency",
-   "fieldtype": "Data",
-   "label": "Credit Amount in Account Currency"
+   "fieldtype": "Currency",
+   "label": "Credit Amount in Account Currency",
+   "options": "Company:company:default_currency"
   },
   {
    "fieldname": "voucher_type",
-   "fieldtype": "Data",
-   "label": "Voucher Type"
+   "fieldtype": "Link",
+   "label": "Voucher Type",
+   "options": "DocType"
   },
   {
    "fieldname": "voucher_no",
-   "fieldtype": "Data",
-   "label": "Voucher No"
+   "fieldtype": "Dynamic Link",
+   "label": "Voucher No",
+   "options": "voucher_type"
   },
   {
    "fieldname": "fiscal_year",
@@ -131,21 +138,49 @@
    "label": "Fiscal Year"
   },
   {
+   "default": "0",
    "fieldname": "is_cancelled",
-   "fieldtype": "Data",
+   "fieldtype": "Check",
    "label": "Is Cancelled"
   },
   {
-   "fieldname": "section_break_gmxon",
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Gold Ledger",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "column_break_c0fhb",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_srzsu",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_7mudv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "account_currency",
+   "fieldtype": "Data",
+   "label": "Account Currency"
   }
  ],
+ "hide_toolbar": 1,
+ "in_create": 1,
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2024-03-04 10:49:52.173734",
+ "modified": "2024-04-29 12:30:59.643063",
  "modified_by": "Administrator",
  "module": "golds",
  "name": "Gold Ledger",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

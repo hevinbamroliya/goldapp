@@ -1,0 +1,5 @@
+[pre_model_sync]
+
+
+[post_model_sync]
+goldapp.property_setter

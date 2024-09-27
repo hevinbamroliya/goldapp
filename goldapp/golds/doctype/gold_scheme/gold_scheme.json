@@ -8,16 +8,19 @@
  "engine": "InnoDB",
  "field_order": [
   "scheme_name",
-  "status",
+  "scheme_type",
   "start_date",
   "scheme_tenure",
-  "last_date_of_enroll",
-  "scheme_type",
-  "is_free_installment_scheme",
+  "column_break_5mfjf",
+  "status",
   "expense_account",
+  "last_date_of_enroll",
+  "is_free_installment_scheme",
+  "section_break_1zxig",
   "no_of_free_installment",
-  "paid_installment",
   "scheme_details",
+  "column_break_cpb4u",
+  "paid_installment",
   "scheme_rule"
  ],
  "fields": [
@@ -48,12 +51,14 @@
   },
   {
    "fieldname": "scheme_type",
-   "fieldtype": "Data",
-   "label": "Scheme Type"
+   "fieldtype": "Link",
+   "label": "Scheme Type",
+   "options": "Scheme Type"
   },
   {
+   "default": "0",
    "fieldname": "is_free_installment_scheme",
-   "fieldtype": "Data",
+   "fieldtype": "Check",
    "label": "Is Free Installment Scheme"
   },
   {
@@ -63,28 +68,40 @@
   },
   {
    "fieldname": "no_of_free_installment",
-   "fieldtype": "Data",
+   "fieldtype": "Int",
    "label": "No. of Free Installment"
   },
   {
    "fieldname": "paid_installment",
-   "fieldtype": "Data",
+   "fieldtype": "Int",
    "label": "Paid Installment"
   },
   {
    "fieldname": "scheme_details",
-   "fieldtype": "Data",
+   "fieldtype": "Small Text",
    "label": "Scheme Details"
   },
   {
    "fieldname": "scheme_rule",
-   "fieldtype": "Data",
+   "fieldtype": "Small Text",
    "label": "Scheme Rule"
+  },
+  {
+   "fieldname": "column_break_5mfjf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_1zxig",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_cpb4u",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-28 10:31:06.975544",
+ "modified": "2024-04-22 10:19:54.513138",
  "modified_by": "Administrator",
  "module": "golds",
  "name": "Gold Scheme",
